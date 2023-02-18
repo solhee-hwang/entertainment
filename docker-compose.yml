@@ -1,0 +1,28 @@
+version: '3'
+services:
+  mysql:
+    image: mysql:8
+    container_name: db_container_gdsc
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: entertainment
+#    networks:
+#      - gdsc_solution_challenge
+#
+#  spring-boot:
+#    build: .
+#    container_name: spring_container_gdsc
+#    ports:
+#      - "8080:8080"
+#    depends_on:
+#      - mysql
+#    environment:
+#      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/entertainment
+#      SPRING_DATASOURCE_USERNAME: root
+#      SPRING_DATASOURCE_PASSWORD: root
+#    networks:
+#      - gdsc_solution_challenge
+#networks:
+#  gdsc_solution_challenge:
