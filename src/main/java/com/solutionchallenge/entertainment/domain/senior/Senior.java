@@ -6,6 +6,11 @@ import com.solutionchallenge.entertainment.domain.interest.Interest;
 import com.solutionchallenge.entertainment.domain.likeLecture.LikeLecture;
 import com.solutionchallenge.entertainment.domain.registration.Registration;
 import com.solutionchallenge.entertainment.domain.review.Review;
+import com.solutionchallenge.entertainment.service.dto.SeniorDTO;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -13,6 +18,10 @@ import java.util.Date;
 import java.util.List;
 
 @Entity
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
+@Getter
 public class Senior extends BaseTimeEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -44,4 +53,17 @@ public class Senior extends BaseTimeEntity {
     @OneToMany(mappedBy = "senior", orphanRemoval = true)
     private List<LikeLecture> likeLectures = new ArrayList<>();
 
+
+    public static Senior getNewInstance(SeniorDTO seniorDTO) {
+        return Senior.builder()
+                .name(seniorDTO.getName())
+                .nickName(seniorDTO.getNickName())
+                .password(seniorDTO.getPassword())
+                .adress(seniorDTO.getAddress())
+                .email(seniorDTO.getEmail())
+                .gender(seniorDTO.getGender())
+                .phoneNum(seniorDTO.getPhone())
+                .birth(seniorDTO.getBirth())
+                .build();
+    }
 }

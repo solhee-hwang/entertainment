@@ -13,8 +13,10 @@ import org.springframework.web.multipart.MultipartFile;
 @RequiredArgsConstructor
 public class SeniorService {
     private final SeniorRepository seniorRepository;
-    private final ImageHandler imageHandler
+    private final ImageHandler imageHandler;
     public void signUp(SeniorDTO toServiceDto, MultipartFile profilImage) {
         Senior getSenior = Senior.getNewInstance(toServiceDto);
+        String profilUrl = imageHandler.pareseFileInfo(profilImage,getSenior);
+
     }
 }

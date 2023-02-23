@@ -23,11 +23,13 @@ public class SeniorRequest {
     private String address;
     @NotNull
     private String phone;
+    @NotNull
+    private String email;
     private String gender;
     private Date birth;
 
     public SeniorDTO toServiceDto() {
-        return SeniorDTO.of(nickName, password, name, address, phone, gender, birth);
+        return SeniorDTO.of(nickName, password, name, email,address, phone, gender, birth);
     }
 
 }

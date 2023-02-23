@@ -9,7 +9,7 @@ import java.util.Date;
 
 @Component
 public class ImageHandler {
-    public String pareseFileInfo(MultipartFile multipartFiles, Long userId) throws Exception{
+    public String pareseFileInfo(MultipartFile multipartFiles, String nickName) throws Exception{
         // 파일이 빈 것이 들어오면 빈 것을 반환
         if (multipartFiles.isEmpty()) {
             return "em";
@@ -40,7 +40,7 @@ public class ImageHandler {
             originalFileExtension = ".gif";
         }
         // 각 이름은 겹치면 안되므로 나노 초까지 동원하여 지정
-        String new_file_name = userId + "_"+ System.nanoTime() + originalFileExtension;
+        String new_file_name = nickName + "_"+ System.nanoTime() + originalFileExtension;
 
         file = new File(absolutePath + path + "/" + new_file_name);
         multipartFiles.transferTo(file);
