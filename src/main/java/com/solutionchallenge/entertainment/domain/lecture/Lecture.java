@@ -23,6 +23,9 @@ public class Lecture extends BaseTimeEntity {
     private Date endDate;
     private String lcoation;
     private int likeCount;
+    private Date registrationDate;
+    private int presentRegistrant;
+    private int maxRegistrant;
 
     @ManyToOne
     @JoinColumn(name="tutor_Id")
