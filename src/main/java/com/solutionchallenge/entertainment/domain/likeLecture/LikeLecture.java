@@ -3,9 +3,16 @@ package com.solutionchallenge.entertainment.domain.likeLecture;
 import com.solutionchallenge.entertainment.domain.BaseTimeEntity;
 import com.solutionchallenge.entertainment.domain.lecture.Lecture;
 import com.solutionchallenge.entertainment.domain.senior.Senior;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
+@Getter
 @Entity
 public class LikeLecture extends BaseTimeEntity {
     @Id

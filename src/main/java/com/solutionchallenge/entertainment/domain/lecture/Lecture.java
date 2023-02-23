@@ -5,12 +5,19 @@ import com.solutionchallenge.entertainment.domain.category.Category;
 import com.solutionchallenge.entertainment.domain.instroductionImages.InstroductionImages;
 import com.solutionchallenge.entertainment.domain.likeLecture.LikeLecture;
 import com.solutionchallenge.entertainment.domain.tutor.Tutor;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
+@Getter
 @Entity
 public class Lecture extends BaseTimeEntity {
     @Id
