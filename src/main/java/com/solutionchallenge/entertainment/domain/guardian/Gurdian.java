@@ -17,14 +17,14 @@ public class Gurdian extends BaseTimeEntity {
 
     @Column
     private String name;
-    private String userID;
-    private String email;
+    private String nickName;
     private String password;
     private String phoneNum;
     private Date birth;
     private String gender;
     private String address;
-
+    private String profilUrl;
+    private String email;
     @OneToOne
     @JoinColumn(name="senior_Id")
     private Senior senior;
