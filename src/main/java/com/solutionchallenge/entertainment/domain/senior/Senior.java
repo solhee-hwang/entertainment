@@ -20,15 +20,14 @@ public class Senior extends BaseTimeEntity {
 
     @Column
     private String name;
-    private String userID;
-    private String email;
+    private String nickName;
     private String password;
     private String phoneNum;
     private Date birth;
     private String gender;
     private String profilUrl;
-    private String significant;
     private String adress;
+    private String email;
 
     @OneToOne(mappedBy = "senior")
     private Gurdian gurdian;

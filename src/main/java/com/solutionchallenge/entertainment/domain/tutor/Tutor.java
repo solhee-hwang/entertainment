@@ -17,14 +17,16 @@ public class Tutor extends BaseTimeEntity {
 
     @Column
     private String name;
-    private String userID;
-    private String email;
+    private String nickName;
     private String password;
     private String phoneNum;
     private Date birth;
     private String gender;
     private String profilUrl;
     private String address;
+    private String email;
+    private String career;
+    private String introduction;
 
     @OneToMany(mappedBy = "tutor", orphanRemoval = true)
     private List<Sigificant> sigificants = new ArrayList<>();
