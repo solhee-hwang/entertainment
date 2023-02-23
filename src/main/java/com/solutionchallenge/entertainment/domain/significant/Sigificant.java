@@ -4,11 +4,18 @@ import com.solutionchallenge.entertainment.domain.BaseTimeEntity;
 import com.solutionchallenge.entertainment.domain.guardian.Gurdian;
 import com.solutionchallenge.entertainment.domain.significantImages.SignificantImages;
 import com.solutionchallenge.entertainment.domain.tutor.Tutor;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
-
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
+@Getter
 @Entity
 public class Sigificant extends BaseTimeEntity {
     @Id

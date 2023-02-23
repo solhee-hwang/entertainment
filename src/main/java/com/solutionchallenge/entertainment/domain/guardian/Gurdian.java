@@ -3,12 +3,19 @@ package com.solutionchallenge.entertainment.domain.guardian;
 import com.solutionchallenge.entertainment.domain.BaseTimeEntity;
 import com.solutionchallenge.entertainment.domain.senior.Senior;
 import com.solutionchallenge.entertainment.domain.significant.Sigificant;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
+@Getter
 @Entity
 public class Gurdian extends BaseTimeEntity {
     @Id
