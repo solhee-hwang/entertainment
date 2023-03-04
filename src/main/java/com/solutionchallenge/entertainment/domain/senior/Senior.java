@@ -6,6 +6,7 @@ import com.solutionchallenge.entertainment.domain.interest.Interest;
 import com.solutionchallenge.entertainment.domain.likeLecture.LikeLecture;
 import com.solutionchallenge.entertainment.domain.registration.Registration;
 import com.solutionchallenge.entertainment.domain.review.Review;
+import com.solutionchallenge.entertainment.service.dto.SeniorDTO;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -64,5 +65,19 @@ public class Senior extends BaseTimeEntity {
                 .phoneNum(seniorDTO.getPhone())
                 .birth(seniorDTO.getBirth())
                 .build();
+    }
+    public static Senior getSeniorInfo(SeniorDTO seniorDTO){
+        return Senior.builder()
+                .name(seniorDTO.getName())
+                .adress(seniorDTO.getAddress())
+                .email(seniorDTO.getEmail())
+                .gender(seniorDTO.getGender())
+                .phoneNum(seniorDTO.getPhone())
+                .birth(seniorDTO.getBirth())
+                .build();
+    }
+
+    public void saveProfilUrl(String profilUrl) {
+        this.profilUrl = profilUrl;
     }
 }

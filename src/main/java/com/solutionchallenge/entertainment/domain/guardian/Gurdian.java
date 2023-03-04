@@ -3,6 +3,7 @@ package com.solutionchallenge.entertainment.domain.guardian;
 import com.solutionchallenge.entertainment.domain.BaseTimeEntity;
 import com.solutionchallenge.entertainment.domain.senior.Senior;
 import com.solutionchallenge.entertainment.domain.significant.Sigificant;
+import com.solutionchallenge.entertainment.service.dto.GurdianDTO;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -38,4 +39,22 @@ public class Gurdian extends BaseTimeEntity {
 
     @OneToMany(mappedBy = "gurdian",orphanRemoval = true)
     private List<Sigificant> sigificants = new ArrayList<>();
+
+    public static Gurdian newInstance(GurdianDTO gurdianDTO,Senior senior) {
+        return Gurdian.builder()
+                .name(gurdianDTO.getName())
+                .nickName(gurdianDTO.getNickName())
+                .password(gurdianDTO.getPassword())
+                .phoneNum(gurdianDTO.getPhone())
+                .birth(gurdianDTO.getBirth())
+                .gender(gurdianDTO.getGender())
+                .address(gurdianDTO.getAddress())
+                .email(gurdianDTO.getEmail())
+                .senior(senior)
+                .build();
+    }
+
+    public void updateProfile(String profilUrl) {
+        this.profilUrl = profilUrl;
+    }
 }

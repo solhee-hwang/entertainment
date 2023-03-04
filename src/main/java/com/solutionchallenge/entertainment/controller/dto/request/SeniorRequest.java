@@ -1,5 +1,6 @@
 package com.solutionchallenge.entertainment.controller.dto.request;
 
+import com.solutionchallenge.entertainment.domain.senior.Senior;
 import com.solutionchallenge.entertainment.service.dto.SeniorDTO;
 import lombok.*;
 
@@ -31,5 +32,6 @@ public class SeniorRequest {
     public SeniorDTO toServiceDto() {
         return SeniorDTO.of(nickName, password, name, email,address, phone, gender, birth);
     }
+
 
 }
