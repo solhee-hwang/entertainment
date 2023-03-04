@@ -1,6 +1,6 @@
 package com.solutionchallenge.entertainment.controller.dto.request;
 
-import com.solutionchallenge.entertainment.service.dto.SeniorDTO;
+import com.solutionchallenge.entertainment.service.dto.TutorDTO;
 import lombok.*;
 
 import javax.validation.constraints.NotNull;
@@ -11,7 +11,7 @@ import java.util.Date;
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 @Builder
-public class SeniorRequest {
+public class TutorRequest {
     @NotNull
     private String nickName;
     @NotNull
@@ -24,12 +24,16 @@ public class SeniorRequest {
     private String phone;
     @NotNull
     private String email;
+    @NotNull
     private String gender;
+    @NotNull
     private Date birth;
+    @NotNull
+    private String career;
+    @NotNull
+    private String introduction;
 
-    public SeniorDTO toServiceDto() {
-        return SeniorDTO.of(nickName, password, name, email,address, phone, gender, birth);
+    public TutorDTO toServiceDto(){
+        return TutorDTO.of(nickName, password, name, address, phone, email, gender, birth, career, introduction);
     }
-
-
 }
