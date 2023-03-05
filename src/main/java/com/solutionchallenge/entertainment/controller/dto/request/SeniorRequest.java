@@ -1,10 +1,12 @@
 package com.solutionchallenge.entertainment.controller.dto.request;
 
+import com.solutionchallenge.entertainment.service.dto.InterestDTO;
 import com.solutionchallenge.entertainment.service.dto.SeniorDTO;
 import lombok.*;
 
 import javax.validation.constraints.NotNull;
 import java.util.Date;
+import java.util.List;
 
 @ToString
 @Getter
@@ -26,9 +28,13 @@ public class SeniorRequest {
     private String email;
     private String gender;
     private Date birth;
+    private List<String> interests;
 
     public SeniorDTO toServiceDto() {
         return SeniorDTO.of(nickName, password, name, email,address, phone, gender, birth);
+    }
+    public InterestDTO toInterestServiceDto(){
+        return InterestDTO.of(interests);
     }
 
 

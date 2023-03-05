@@ -1,11 +1,14 @@
 package com.solutionchallenge.entertainment.controller.dto.request;
 
 import com.solutionchallenge.entertainment.service.dto.GurdianDTO;
+import com.solutionchallenge.entertainment.service.dto.InterestDTO;
 import com.solutionchallenge.entertainment.service.dto.SeniorDTO;
 import lombok.*;
 
 import javax.validation.constraints.NotNull;
 import java.util.Date;
+import java.util.List;
+
 @ToString
 @Getter
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
@@ -34,11 +37,15 @@ public class GurdianRequest {
     private Date seniorBirth;
 
     private String seniorEmail;
+    private List<String> interests;
 
     public GurdianDTO toServiceDto(){
         return GurdianDTO.of(nickName, password, name, address, phone, email, gender, birth, seniorNickName);
     }
     public GurdianInputSeniorRequest toInputRequest(){
         return GurdianInputSeniorRequest.of(seniorName,seniorAddress,seniorPhone,seniorGender,seniorBirth,seniorEmail);
+    }
+    public InterestDTO toInterestServiceDto(){
+        return InterestDTO.of(interests);
     }
 }

@@ -22,7 +22,7 @@ public class SeniorController {
     private final ImageHandler imageHandler;
     @PostMapping(value ="signup", consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.MULTIPART_FORM_DATA_VALUE})
     public ResponseEntity<?> signUp(@Valid  @RequestPart SeniorRequest seniorRequest, @RequestPart MultipartFile profilImage) throws Exception {
-        seniorService.signUp(seniorRequest.toServiceDto(), profilImage);
+        seniorService.signUp(seniorRequest.toServiceDto(), profilImage,seniorRequest.toInterestServiceDto());
         return ResponseEntity.ok("signup Complete");
     }
 }

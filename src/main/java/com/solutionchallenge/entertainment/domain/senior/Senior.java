@@ -1,6 +1,7 @@
 package com.solutionchallenge.entertainment.domain.senior;
 
 import com.solutionchallenge.entertainment.domain.BaseTimeEntity;
+import com.solutionchallenge.entertainment.domain.InterestRelation.InterestRelation;
 import com.solutionchallenge.entertainment.domain.guardian.Gurdian;
 import com.solutionchallenge.entertainment.domain.interest.Interest;
 import com.solutionchallenge.entertainment.domain.likeLecture.LikeLecture;
@@ -42,7 +43,7 @@ public class Senior extends BaseTimeEntity {
     private Gurdian gurdian;
 
     @OneToMany(mappedBy = "senior", orphanRemoval = true)
-    private List<Interest> interests = new ArrayList<>();
+    private List<InterestRelation> interestRelations = new ArrayList<>();
 
     @OneToMany(mappedBy = "senior", orphanRemoval = true)
     private List<Review> reviews = new ArrayList<>();
