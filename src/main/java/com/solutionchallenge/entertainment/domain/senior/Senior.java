@@ -2,8 +2,7 @@ package com.solutionchallenge.entertainment.domain.senior;
 
 import com.solutionchallenge.entertainment.domain.BaseTimeEntity;
 import com.solutionchallenge.entertainment.domain.InterestRelation.InterestRelation;
-import com.solutionchallenge.entertainment.domain.guardian.Gurdian;
-import com.solutionchallenge.entertainment.domain.interest.Interest;
+import com.solutionchallenge.entertainment.domain.guardian.Guardian;
 import com.solutionchallenge.entertainment.domain.likeLecture.LikeLecture;
 import com.solutionchallenge.entertainment.domain.registration.Registration;
 import com.solutionchallenge.entertainment.domain.review.Review;
@@ -40,7 +39,7 @@ public class Senior extends BaseTimeEntity {
     private String email;
 
     @OneToOne(mappedBy = "senior")
-    private Gurdian gurdian;
+    private Guardian guardian;
 
     @OneToMany(mappedBy = "senior", orphanRemoval = true)
     private List<InterestRelation> interestRelations = new ArrayList<>();

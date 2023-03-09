@@ -26,4 +26,8 @@ public class LikeLecture extends BaseTimeEntity {
     @ManyToOne
     @JoinColumn(name="lecture_id")
     private Lecture lecture;
+
+    public static LikeLecture getNewInstance(Lecture lecture, Senior senior) {
+        return LikeLecture.builder().lecture(lecture).senior(senior).build();
+    }
 }

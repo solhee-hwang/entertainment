@@ -25,11 +25,12 @@ public class Lecture extends BaseTimeEntity {
     private Long lectureId;
 
     @Column
+    private String lectureName;
     private String instroduction;
     private Date startDate;
     private Date endDate;
     private String lcoation;
-    private int likeCount;
+    private int likeCount = 0;
     private Date registrationDate;
     private int presentRegistrant;
     private int maxRegistrant;
@@ -47,4 +48,12 @@ public class Lecture extends BaseTimeEntity {
 
     @OneToMany(mappedBy = "lecture",orphanRemoval = true)
     List<LikeLecture> likeLectures = new ArrayList<>();
+
+    public void unLike() {
+        this.likeCount -= 1;
+    }
+
+    public void like() {
+        this.likeCount +=1;
+    }
 }

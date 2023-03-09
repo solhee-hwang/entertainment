@@ -4,8 +4,8 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;
 
-public interface GurdianRepository extends JpaRepository<Gurdian,Long> {
-    Optional<Gurdian> findByEmail(String email);
+public interface GurdianRepository extends JpaRepository<Guardian,Long> {
+    Optional<Guardian> findByEmail(String email);
 
-    Optional<Gurdian> findByNickName(String nickName);
+    Optional<Guardian> findByNickName(String nickName);
 }

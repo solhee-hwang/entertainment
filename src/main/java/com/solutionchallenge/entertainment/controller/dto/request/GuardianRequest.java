@@ -1,8 +1,7 @@
 package com.solutionchallenge.entertainment.controller.dto.request;
 
-import com.solutionchallenge.entertainment.service.dto.GurdianDTO;
+import com.solutionchallenge.entertainment.service.dto.GuardianDTO;
 import com.solutionchallenge.entertainment.service.dto.InterestDTO;
-import com.solutionchallenge.entertainment.service.dto.SeniorDTO;
 import lombok.*;
 
 import javax.validation.constraints.NotNull;
@@ -14,7 +13,7 @@ import java.util.List;
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 @Builder
-public class GurdianRequest {
+public class GuardianRequest {
     @NotNull
     private String nickName;
     @NotNull
@@ -39,8 +38,8 @@ public class GurdianRequest {
     private String seniorEmail;
     private List<String> interests;
 
-    public GurdianDTO toServiceDto(){
-        return GurdianDTO.of(nickName, password, name, address, phone, email, gender, birth, seniorNickName);
+    public GuardianDTO toServiceDto(){
+        return GuardianDTO.of(nickName, password, name, address, phone, email, gender, birth, seniorNickName);
     }
     public GurdianInputSeniorRequest toInputRequest(){
         return GurdianInputSeniorRequest.of(seniorName,seniorAddress,seniorPhone,seniorGender,seniorBirth,seniorEmail);

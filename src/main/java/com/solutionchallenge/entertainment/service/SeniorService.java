@@ -63,4 +63,7 @@ public class SeniorService {
     public Senior findByNickName(String nickName ){
         return seniorRepository.findByNickName(nickName).orElseThrow(()-> new IllegalArgumentException("없는 유저입니다"));
     }
+    public Senior findBySeniorId(Long seniorId){
+        return seniorRepository.findBySeniorId(seniorId).orElseThrow(() -> new IllegalArgumentException("없는 id 유저"));
+    }
 }

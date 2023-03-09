@@ -2,9 +2,7 @@ package com.solutionchallenge.entertainment.domain.tutor;
 
 import com.solutionchallenge.entertainment.domain.BaseTimeEntity;
 import com.solutionchallenge.entertainment.domain.lecture.Lecture;
-import com.solutionchallenge.entertainment.domain.senior.Senior;
-import com.solutionchallenge.entertainment.domain.significant.Sigificant;
-import com.solutionchallenge.entertainment.service.dto.SeniorDTO;
+import com.solutionchallenge.entertainment.domain.significant.Significant;
 import com.solutionchallenge.entertainment.service.dto.TutorDTO;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -39,7 +37,7 @@ public class Tutor extends BaseTimeEntity {
     private String introduction;
 
     @OneToMany(mappedBy = "tutor", orphanRemoval = true)
-    private List<Sigificant> sigificants = new ArrayList<>();
+    private List<Significant> significants = new ArrayList<>();
 
     @OneToMany(mappedBy = "tutor", orphanRemoval = true)
     private List<Lecture> lectures = new ArrayList<>();

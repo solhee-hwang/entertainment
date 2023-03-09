@@ -1,8 +1,7 @@
 package com.solutionchallenge.entertainment.domain.significantImages;
 
 import com.solutionchallenge.entertainment.domain.BaseTimeEntity;
-import com.solutionchallenge.entertainment.domain.significant.Sigificant;
-import com.solutionchallenge.entertainment.domain.significant.SignificantRepository;
+import com.solutionchallenge.entertainment.domain.significant.Significant;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -24,5 +23,5 @@ public class SignificantImages extends BaseTimeEntity{
 
     @ManyToOne
     @JoinColumn(name="significant_Id")
-    private Sigificant significant;
+    private Significant significant;
 }

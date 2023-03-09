@@ -7,7 +7,7 @@ import java.util.Date;
 @Getter
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
-public class GurdianDTO {
+public class GuardianDTO {
     private String nickName;
     private String password;
     private String name;
@@ -18,7 +18,7 @@ public class GurdianDTO {
     private Date birth;
     private String seniorNickname;
 
-    public static GurdianDTO of(String nickName, String password, String name, String address, String phone, String email, String gender, Date birth, String seniorNickName) {
-        return new GurdianDTO(nickName, password, name, email, address, phone, gender, birth, seniorNickName);
+    public static GuardianDTO of(String nickName, String password, String name, String address, String phone, String email, String gender, Date birth, String seniorNickName) {
+        return new GuardianDTO(nickName, password, name, email, address, phone, gender, birth, seniorNickName);
     }
 }

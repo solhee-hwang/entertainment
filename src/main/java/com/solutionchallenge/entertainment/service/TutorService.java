@@ -43,12 +43,16 @@ public class TutorService {
         gurdianRepository.findByNickName(tutorDTO.getNickName())
                 .ifPresent(m->{
                     log.error("닉네임 증복, nickname : {}",tutorDTO.getNickName());
-                    throw new IllegalArgumentException("gurdian already exists");
+                    throw new IllegalArgumentException("guardian already exists");
                 });
         seniorRepository.findByNickName(tutorDTO.getNickName())
                 .ifPresent(m->{
                     log.error("닉네임 증복, nickname : {}",tutorDTO.getNickName());
                     throw new IllegalArgumentException("SeniorNickName already exists");
                 });
+    }
+    public Tutor findByNickName(String nickName){
+        return tutorRepository.findByNickName(nickName)
+                .orElseThrow(() -> new IllegalArgumentException(nickName + " 는 없는 닉네임입니다"));
     }
 }
