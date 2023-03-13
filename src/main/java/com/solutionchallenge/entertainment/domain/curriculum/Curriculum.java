@@ -2,12 +2,14 @@ package com.solutionchallenge.entertainment.domain.curriculum;
 
 import com.solutionchallenge.entertainment.domain.BaseTimeEntity;
 import com.solutionchallenge.entertainment.domain.lecture.Lecture;
+import com.solutionchallenge.entertainment.service.dto.TutorLectureDTO;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 
 @Builder
 @NoArgsConstructor
@@ -20,11 +22,18 @@ public class Curriculum extends BaseTimeEntity {
     private Long curriculumId;
 
     @Column
-    private Long content;
-    private int week;
+    private String content;
     private String imageUrl;
+
 
     @ManyToOne
     @JoinColumn(name="lecture_Id")
     private Lecture lecture;
+
+    public static Curriculum getNewInstance(String content, Lecture lecture) {
+        return Curriculum.builder()
+                .content(content)
+                .lecture(lecture)
+                .build();
+    }
 }

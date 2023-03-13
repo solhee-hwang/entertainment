@@ -1,6 +1,7 @@
 package com.solutionchallenge.entertainment.domain.senior;
 
 import com.solutionchallenge.entertainment.domain.BaseTimeEntity;
+import com.solutionchallenge.entertainment.domain.apply.Apply;
 import com.solutionchallenge.entertainment.domain.guardian.Gurdian;
 import com.solutionchallenge.entertainment.domain.interest.Interest;
 import com.solutionchallenge.entertainment.domain.likeLecture.LikeLecture;
@@ -47,7 +48,7 @@ public class Senior extends BaseTimeEntity {
     private List<Review> reviews = new ArrayList<>();
 
     @OneToMany(mappedBy = "senior", orphanRemoval = true)
-    private List<Registration> registrations = new ArrayList<>();
+    private List<Apply> applies = new ArrayList<>();
 
     @OneToMany(mappedBy = "senior", orphanRemoval = true)
     private List<LikeLecture> likeLectures = new ArrayList<>();

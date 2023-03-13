@@ -1,4 +1,7 @@
 package com.solutionchallenge.entertainment.domain.review;
 
-public interface ReivewRepository {
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface ReivewRepository extends JpaRepository<Review,Long> {
+
 }
