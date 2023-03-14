@@ -34,17 +34,17 @@ public class UserLectureController {
     }
 
     @GetMapping("/main")
-    public ResponseEntity<?> showMainLecture(){
+    public ResponseEntity<?> showMainLecture(@RequestParam Long userId){
 
-        List<BriefLectureResponse> reponses = userLectureService.showAllLecture("all", "modifiedDate");
+        List<BriefLectureResponse> reponses = userLectureService.showAllLecture("all", "modifiedDate", userId);
 
         return ResponseEntity.ok(reponses);
     }
 
     @GetMapping("/all")
-    public ResponseEntity<?> showAllLecture(@RequestParam String category, @RequestParam String sort){
+    public ResponseEntity<?> showAllLecture(@RequestParam String category, @RequestParam String sort, @RequestParam Long userId){
 
-        List<BriefLectureResponse> reponses = userLectureService.showAllLecture(category, sort);
+        List<BriefLectureResponse> reponses = userLectureService.showAllLecture(category, sort, userId);
 
         return ResponseEntity.ok(reponses);
     }

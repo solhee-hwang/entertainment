@@ -16,20 +16,23 @@ import com.solutionchallenge.entertainment.domain.registration.RegistrationRepos
 import com.solutionchallenge.entertainment.domain.senior.Senior;
 import com.solutionchallenge.entertainment.domain.senior.SeniorRepository;
 import com.solutionchallenge.entertainment.domain.tutor.Tutor;
+import com.solutionchallenge.entertainment.service.dto.LectureDistance;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Slf4j
 @Service
 @RequiredArgsConstructor
 public class UserLectureService {
 
-
+    private static final double RADIUS_KM = 10.0;
     private final SeniorRepository seniorRepository;
     private final ApplyRepository applyRepository;
     private final LectureRepository lectureRepository;
@@ -73,7 +76,9 @@ public class UserLectureService {
         return response;
     }
 
-    public List<BriefLectureResponse> showAllLecture(String category, String sort) {
+    public List<BriefLectureResponse> showAllLecture(String category, String sort, Long userId) {
+
+        Senior senior = seniorRepository.findById(userId).orElseThrow(()-> new IllegalArgumentException("Senior doesn't exist"));
 
         String sortColumn ="modifiedDate";
         if(sort.equals("like")) sortColumn = "likeCount";
@@ -84,18 +89,34 @@ public class UserLectureService {
         // category : all / health / education / hobby / social
         if(category.equals("all")){
             lectures = lectureRepository.findAll(Sort.by(Sort.Direction.DESC, sortColumn));
+            //lectures = lectureRepository.findAll();
         }
         else{
             lectures = lectureRepository.findAllByCategory(category, Sort.by(Sort.Direction.DESC, sortColumn));
         }
 
+        List<LectureDistance> finalLecture = lectures
+                .stream()
+                .map(lecture -> LectureDistance.builder()
+                        .inputlecture(lecture)
+                        .userLatitude(senior.getLatitude())
+                        .userLongitude(senior.getLongitude())
+                        .distance(calculateDistance(lecture.getLatitude(), lecture.getLongitude(), senior.getLatitude(), senior.getLongitude()))
+                        .build())
+                .filter(lectureDistance -> lectureDistance.getDistance() <= RADIUS_KM)
+                .sorted(Comparator.comparing(LectureDistance::getDistance))
+                .collect(Collectors.toList());
+
         List<BriefLectureResponse> responses = new ArrayList<>();
-
-        for(Lecture element : lectures){
-            responses.add(BriefLectureResponse.getNewInstance(element));
+        for(LectureDistance element : finalLecture){
+            responses.add(BriefLectureResponse.getNewInstance(element.getInputlecture()));
         }
-
         return responses;
+        // lecture 테이블에 distance가 없어서 거리순 정렬이 안됨
+//        return lectures
+//                .stream()
+//                .map(lecture -> BriefLectureResponse.getNewInstance(lecture))
+//                .collect(Collectors.toList());
     }
 
 
@@ -140,5 +161,14 @@ public class UserLectureService {
         return responses;
     }
 
+    private double calculateDistance(double lat1, double lon1, double lat2, double lon2) {
+        lat1 = Math.toRadians(lat1);
+        lon1 = Math.toRadians(lon1);
+        lat2 = Math.toRadians(lat2);
+        lon2 = Math.toRadians(lon2);
+
+        double earthRadius = 6371; //Kilometers
+        return earthRadius * Math.acos(Math.sin(lat1) * Math.sin(lat2) + Math.cos(lat1) * Math.cos(lat2) * Math.cos(lon1 - lon2));
+    }
 
 }
