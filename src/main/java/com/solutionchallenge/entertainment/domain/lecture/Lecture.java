@@ -51,6 +51,9 @@ public class Lecture extends BaseTimeEntity {
     private String sunday;
     private String representImageUrl;
 
+    private double latitude;
+    private double longitude;
+
 
     @OneToMany(mappedBy = "lecture", orphanRemoval = true)
     List<Registration> registrations = new ArrayList<>();
@@ -70,7 +73,7 @@ public class Lecture extends BaseTimeEntity {
     @OneToMany(mappedBy = "lecture",orphanRemoval = true)
     List<LikeLecture> likeLectures = new ArrayList<>();
 
-    public static Lecture getNewInstance(TutorLectureDTO tutorLectureDTO){
+    public static Lecture getNewInstance(TutorLectureDTO tutorLectureDTO, double latitude, double longitude){
         return Lecture.builder()
                 .instroduction(tutorLectureDTO.getInstroduction())
                 .startDate(tutorLectureDTO.getStartDate())
@@ -92,6 +95,8 @@ public class Lecture extends BaseTimeEntity {
                 .title(tutorLectureDTO.getTitle())
                 .activityTime(tutorLectureDTO.getActivityTime())
                 .week(tutorLectureDTO.getWeek())
+                .latitude(latitude)
+                .longitude(longitude)
                 .build();
     }
 }

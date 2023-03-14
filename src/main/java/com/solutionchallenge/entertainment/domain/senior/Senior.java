@@ -37,6 +37,8 @@ public class Senior extends BaseTimeEntity {
     private String profilUrl;
     private String adress;
     private String email;
+    private double latitude;
+    private double longitude;
 
     @OneToOne(mappedBy = "senior")
     private Gurdian gurdian;

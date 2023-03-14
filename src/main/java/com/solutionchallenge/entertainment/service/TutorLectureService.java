@@ -1,6 +1,7 @@
 package com.solutionchallenge.entertainment.service;
 
 import com.solutionchallenge.entertainment.controller.dto.response.BriefLectureResponse;
+import com.solutionchallenge.entertainment.controller.dto.response.KakaoApiResponse;
 import com.solutionchallenge.entertainment.domain.curriculum.Curriculum;
 import com.solutionchallenge.entertainment.domain.curriculum.CurriculumRepository;
 import com.solutionchallenge.entertainment.domain.instroductionImages.InstroductionImagesRepository;
@@ -24,6 +25,9 @@ import java.util.List;
 @RequiredArgsConstructor
 public class TutorLectureService {
 
+    private final KakaoAddressSearchService kakaoAddressSearchService;
+    private final KakaoUriBuilderService kakaoUriBuilderService;
+
     private final LectureRepository lectureRepository;
     private final CurriculumRepository curriculumRepository;
     private final InstroductionImagesRepository instroductionImagesRepository;
@@ -34,7 +38,12 @@ public class TutorLectureService {
 
         Tutor tutor = tutorRepository.findById(tutorLectureDTO.getTutorId()).orElseThrow(()-> new IllegalArgumentException("Tutor doesn't exist"));
 
-        Lecture lecture = Lecture.getNewInstance(tutorLectureDTO);
+        // 여기서 location -> latitude, longitude로 변환해서 lecture 테이블에 반영해줌
+        KakaoApiResponse kakaoApiResponse = kakaoAddressSearchService.requestAddressSearch(tutorLectureDTO.getLocation());
+        double latitude = kakaoApiResponse.getDocuments().get(0).getLatitude();
+        double longitude = kakaoApiResponse.getDocuments().get(0).getLongitude();
+
+        Lecture lecture = Lecture.getNewInstance(tutorLectureDTO, latitude, longitude);
         Registration registration = Registration.getNewInstance("registered", tutor, lecture);
 
         List<Curriculum> curriculums = new ArrayList<>();
@@ -67,7 +76,12 @@ public class TutorLectureService {
 
         Tutor tutor = tutorRepository.findById(tutorLectureDTO.getTutorId()).orElseThrow(()-> new IllegalArgumentException("Tutor doesn't exist"));
 
-        Lecture lecture = Lecture.getNewInstance(tutorLectureDTO);
+        // 여기서 location -> latitude, longitude로 변환해서 lecture 테이블에 반영해줌
+        KakaoApiResponse kakaoApiResponse = kakaoAddressSearchService.requestAddressSearch(tutorLectureDTO.getLocation());
+        double latitude = kakaoApiResponse.getDocuments().get(0).getLatitude();
+        double longitude = kakaoApiResponse.getDocuments().get(0).getLongitude();
+
+        Lecture lecture = Lecture.getNewInstance(tutorLectureDTO, latitude, longitude);
         Registration registration = Registration.getNewInstance("registered", tutor, lecture);
 
         List<Curriculum> curriculums = new ArrayList<>();
