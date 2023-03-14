@@ -98,13 +98,16 @@ public class UserLectureService {
         return responses;
     }
 
-    /*
-            public void cancelLecture(Long userId, Long lectureId) {
 
-                applyRepository.deleteBySeniorIdAndLectureId(userId, lectureId);
+    public void cancelLecture(Long userId, Long lectureId) {
 
-            }
-        */
+        Senior senior = seniorRepository.findById(userId).orElseThrow(()-> new IllegalArgumentException("Senior doesn't exist"));
+        Lecture lecture = lectureRepository.findById(lectureId).orElseThrow(()-> new IllegalArgumentException("Senior doesn't exist"));
+
+        applyRepository.deleteBySeniorAndLecture(senior, lecture);
+
+    }
+
     // 통과
     public List<BriefLectureResponse> myLecture(String state, Long userId) {
 

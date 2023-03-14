@@ -57,7 +57,6 @@ public class UserLectureController {
         return ResponseEntity.ok(response);
     }
 
-/*
     @DeleteMapping("/cancel")
     public ResponseEntity<?> cancelLecture(@RequestParam Long userId, @RequestParam Long lectureId){
 
@@ -65,7 +64,7 @@ public class UserLectureController {
 
         return ResponseEntity.ok("Lecture Canceled");
     }
-
+/*
     @GetMapping("/search")
     public ResponseEntity<?> searchLecture(){
 
